@@ -2,7 +2,6 @@ package app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**Implements a series of commonly-used sort methods and a Binary Search-
@@ -51,14 +50,14 @@ public class DoubleSorter {
         if (list.size()<=1) return list;
         
         int middle = list.size()/2;
-        List<Double> left = new LinkedList<Double>(list.subList(0, middle));
-        List<Double> right = new LinkedList<Double>(list.subList(middle,list.size()));
+        List<Double> left = new ArrayList<Double>(list.subList(0, middle));
+        List<Double> right = new ArrayList<Double>(list.subList(middle,list.size()));
         
         return merge(mergeSort(left),mergeSort(right));
     }
     
     private static List<Double> merge(List<Double> left, List<Double> right){
-        List<Double> result = new LinkedList<Double>();
+        List<Double> result = new ArrayList<Double>();
         try {
             while (left.size()!=0 || right.size()!=0) {
                 /*while there are items in either list, compare...*/
@@ -98,8 +97,8 @@ public class DoubleSorter {
         /*recursion check*/
         if (list.size()<=1) return list;
         
-        List<Double> left = new LinkedList<Double>();
-        List<Double> right = new LinkedList<Double>();
+        List<Double> left = new ArrayList<Double>();
+        List<Double> right = new ArrayList<Double>();
         List<Double> sortedList;
         int pivotIndex = (int) Math.floor(list.size()/2);
         Double pivotValue = list.get(pivotIndex);
@@ -109,7 +108,7 @@ public class DoubleSorter {
         /*Remove pivotValue from list to be sorted (since pivotValue doesn't need
          * to be compared to itself)
          */
-        List<Double> subList = new LinkedList<Double>(list.subList(0, pivotIndex));
+        List<Double> subList = new ArrayList<Double>(list.subList(0, pivotIndex));
         subList.addAll(list.subList(pivotIndex+1, list.size()));
         subListSize = subList.size();
         /*Now do the compare*/
@@ -124,7 +123,7 @@ public class DoubleSorter {
         /*concatenate the three elements- left side (recursively sorted),
          * pivotValue, and right side (recursively sorted);
          */
-        sortedList = new LinkedList<Double>(quickSort(left));
+        sortedList = new ArrayList<Double>(quickSort(left));
         sortedList.add(pivotValue);
         sortedList.addAll(quickSort(right));
     
